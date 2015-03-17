@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+ <title>Example of carrousels</title>
+<meta charset="utf-8" />
+<meta name="author" content="Nicolas Hoffmann" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" href="http://rocssti.net/downloads/rocssti-fr.css" />
+
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<script src="http://a11y.nicolas-hoffmann.net/carrousel/js/jquery-accessible-carrousel-aria.js"></script>
+
+
+<style>
+#page {
+  width: 960px;
+}
+
+
+/* carousel global styles */
+
+.carrousel__container {
+  white-space: nowrap;
+}
+.carrousel__content[aria-hidden=true] {
+  display: none;
+}
+
+/* exemple styles */
+.news-carrousel__control__list,
+.images-carrousel__control__list {
+  position: absolute;
+  list-style-type: none;
+  top: 100%;
+  right: 0;
+  left: 0;
+  padding-left: 0;
+  text-align: center;
+}
+.news-carrousel__control__list__item,
+.images-carrousel__control__list__item {
+  display: inline-block;
+  margin: 0 .5em;
+}
+.news-carrousel__control__list__link,
+.images-carrousel__control__list__link {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background: #fff;
+  border: 1px solid #666;
+  border-radius: 1em;
+}
+
+.news-carrousel__button-container,
+.images-carrousel__button-container {
+  position: absolute;
+
+}
+.news-carrousel__button__previous,
+.images-carrousel__button__previous {
+  top: 50%;
+  margin-top: -18px;
+  left: 0;
+  margin-left: -35px;
+}
+.news-carrousel__button__next,
+.images-carrousel__button__next {
+  top: 50%;
+  margin-top: -18px;
+  right: 0;
+  margin-right: -35px;
+}
+.news-carrousel__button__button,
+.images-carrousel__button__button {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+
+
+
+
+
+/* transition slide */
+.slide .carrousel__content {
+  display: inline-block;
+  vertical-align: top;
+  visibility: visible;
+  width: 100%;
+  position: relative;
+  -webkit-transition: left .5s ease-in;
+  -moz-transition: left .5s ease-in;
+  -o-transition: left .5s ease-in;
+  -ms-transition: left .5s ease-in;
+  transition: left .5s ease-in;
+}
+
+.slide .carrousel__content.visibility-off {
+  visibility: hidden;
+}
+
+
+.carrouselslide-1-1.slide > div,
+.carrouselslide-2-1.slide > div,
+.carrouselslide-3-1.slide > div,
+.carrouselslide-4-1.slide > div,
+.carrouselslide-5-1.slide > div {
+  left: 0;
+}
+.carrouselslide-1-2.slide > div,
+.carrouselslide-2-2.slide > div,
+.carrouselslide-3-2.slide > div,
+.carrouselslide-4-2.slide > div,
+.carrouselslide-5-2.slide > div {
+  left: -100%;
+}
+.carrouselslide-1-3.slide > div,
+.carrouselslide-2-3.slide > div,
+.carrouselslide-3-3.slide > div,
+.carrouselslide-4-3.slide > div,
+.carrouselslide-5-3.slide > div {
+  left: -200%;
+}
+.carrouselslide-1-4.slide > div,
+.carrouselslide-2-4.slide > div,
+.carrouselslide-3-4.slide > div,
+.carrouselslide-4-4.slide > div,
+.carrouselslide-5-4.slide > div {
+  left: -300%;
+}
+.carrouselslide-1-5.slide > div,
+.carrouselslide-2-5.slide > div,
+.carrouselslide-3-5.slide > div,
+.carrouselslide-4-5.slide > div,
+.carrouselslide-5-5.slide > div {
+  left: -400%;
+}
+
+
+.slide .carrousel__content[aria-hidden=true] {
+  display: inline-block;
+}
+
+/* transition fade */
+.fade .carrousel__content {
+  -webkit-animation: fadein 1s;
+  -moz-animation:    fadein 1s;
+  -o-animation:      fadein 1s;
+  -ms-animation:     fadein 1s;
+  animation:         fadein 1s;
+}
+.fade .carrousel__content[aria-hidden=true] {
+  -webkit-animation: fadeout 1s;
+  -moz-animation:    fadeout 1s;
+  -o-animation:      fadeout 1s;
+  -ms-animation:     fadeout 1s;
+  animation:         fadeout 1s;
+}
+
+@-webkit-keyframes fadeout {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes fadeout {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes fadeout {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-ms-keyframes fadeout {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fadeout {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@-webkit-keyframes fadein {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes fadein {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes fadein {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-ms-keyframes fadein {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fadein {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+
+/* carrousel */
+.news-carrousel__control__list__link:focus,
+.news-carrousel__control__list__link:hover,
+.news-carrousel__control__list__link:active,
+.news-carrousel__control__list__link[aria-selected=true],
+.images-carrousel__control__list__link:focus,
+.images-carrousel__control__list__link:hover,
+.images-carrousel__control__list__link:active,
+.images-carrousel__control__list__link[aria-selected=true] {
+  background: #666;
+}
+
+
+</style>
+
+
+
+
+</head>
+<body role="document">
+<div id="page">
+ <h1>Carrousel tests</h1>
+
+
+
+    <h2>Classic one with slide transition</h2>
+
+
+
+    <div class="carrousel relative mb2">
+      
+      <div class="carrousel__container mod--hidden mb1" 
+              data-carrousel-btn-previous-img="./fleche_slider_gauche.png" 
+              data-carrousel-btn-next-img="./fleche_slider_droite.png"
+              data-carrousel-btn-previous-text="Show previous panel"
+              data-carrousel-btn-next-text="Show next panel"
+              data-carrousel-prefix-classes="news"
+              data-carrousel-span-text="Contenu" 
+              data-carrousel-span-text-class="invisible"
+              data-carrousel-transition="slide"
+              data-carrousel-hx="h3">
+        	<div class="carrousel__content">
+        	 Ici le contenu 1<br>
+           fd<a href="#">sfdsfdsfds</a>fds<br>fdsfdsfds
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+        	</div><!--
+       --><div class="carrousel__content">
+        	 Ici le contenu 2<br>
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+        	</div><!--
+       --><div class="carrousel__content">
+        	 Ici le contenu 3<br>
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+        	</div><!--
+       --><div class="carrousel__content">
+        	 Ici le contenu 4<br>
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+        	</div>
+      </div>
+      
+      
+    </div>
+
+<br><br><br><br><br><br><br>
+
+    <h2>Simple one with fade</h2>
+
+
+    <div class="carrousel relative mb2">
+      <div class="carrousel__container mod--hidden mb1" 
+              data-carrousel-btn-previous-img="./fleche_slider_gauche.png" 
+              data-carrousel-btn-next-img="./fleche_slider_droite.png"
+              data-carrousel-btn-previous-text="Show previous panel"
+              data-carrousel-btn-next-text="Show next panel"
+              data-carrousel-prefix-classes="news"
+              data-carrousel-span-text-class="invisible" 
+              data-carrousel-span-text="Content" 
+              data-carrousel-transition="fade"
+              data-carrousel-hx="h3">
+        	<div class="carrousel__content">
+
+        	 <div class="row w100">
+            <div class="col w23-5"><img src="http://placehold.it/226x224" alt="Here the alt tag for this" /></div>
+            <div class="col w2 gut"></div>
+            <div class="col w23-5"><img src="http://placehold.it/226x224" alt="Here the alt tag for this" /></div>
+            <div class="col w2 gut"></div>
+            <div class="col w23-5"><img src="http://placehold.it/226x224" alt="Here the alt tag for this" /></div>
+            <div class="col w2 gut"></div>
+            <div class="col w23-5"><img src="http://placehold.it/226x224" alt="Here the alt tag for this" /></div>
+           </div>
+           
+        	</div>
+        	<div class="carrousel__content">
+
+        	 <div class="row w100">
+            <div class="col w23-5"><img src="http://placehold.it/226x224" alt="Here the alt tag for this" /></div>
+            <div class="col w2 gut"></div>
+            <div class="col w23-5"><img src="http://placehold.it/226x224" alt="Here the alt tag for this" /></div>
+            <div class="col w2 gut"></div>
+            <div class="col w23-5"><img src="http://placehold.it/226x224" alt="Here the alt tag for this" /></div>
+            <div class="col w2 gut"></div>
+            <div class="col w23-5"><img src="http://placehold.it/226x224" alt="Here the alt tag for this" /></div>
+           </div>
+
+        	</div>
+      </div>
+      
+      
+    </div>
+
+<br><br><br><br><br><br><br>
+
+    <h2>Unstyled one without transition</h2>
+
+    <div class="carrousel relative mb2">
+      
+      <div class="carrousel__container mod--hidden mb1" 
+              data-carrousel-btn-previous-text="Show previous panel"
+              data-carrousel-btn-next-text="Show next panel"
+              data-carrousel-prefix-classes="unstyled"
+              data-carrousel-existing-hx="h3">
+        	<div class="carrousel__content">
+           <h3>Test 1</h3>
+        	 Ici le contenu 1<br>
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+        	</div>
+        	<div class="carrousel__content">
+           <h3>Test 2</h3>
+        	 Ici le contenu 2<br>
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+        	</div>
+        	<div class="carrousel__content">
+           <h3>Test 3</h3>
+        	 Ici le contenu 3<br>
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+        	</div>
+        	<div class="carrousel__content">
+           <h3>Test final</h3>
+        	 Ici le contenu 4<br>
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+           fdsfdsfdsfdsfds<br>fdsfdsfds
+        	</div>
+      </div>
+      
+      
+    </div>
+
+
+<br><br><br>
+<a href="#">Ici un autre lien en dehors du truc</a>
+
+
+</div>
+</body>
+</html>

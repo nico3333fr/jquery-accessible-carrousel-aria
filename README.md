@@ -1,11 +1,10 @@
-# jQuery Accessible Carrousel using ARIA
-jQuery Accessible Carrousel System, using <abbr title="Accessible Rich Internet Application">ARIA</abbr>
+# jQuery Accessible Carrousel using <abbr title="Accessible Rich Internet Application">ARIA</abbr>
 ===========================
 <p>This jQuery plugin will transform a simple list of <code>div</code>’s and <code>hx</code> into a <strong>fantastic-shiny carrousel system</strong>, using <abbr title="Accessible Rich Internet Application">ARIA</abbr>.</p>
 ===========================
 ```
-&lt;div class="carrousel relative"&gt;      
-  &lt;div class="carrousel__container mod--hidden" 
+<div class="carrousel relative">      
+  <div class="carrousel__container mod--hidden" 
    data-carrousel-btn-previous-img="./arrow_back.png" 
    data-carrousel-btn-next-img="./arrow_next.png"
    data-carrousel-btn-previous-text="Show previous panel"
@@ -13,23 +12,23 @@ jQuery Accessible Carrousel System, using <abbr title="Accessible Rich Internet 
    data-carrousel-prefix-classes="news"
    data-carrousel-span-text-class="invisible"
    data-carrousel-transition="fade"
-   data-carrousel-existing-hx="h3"&gt;
+   data-carrousel-existing-hx="h3">
           
-    &lt;div class="carrousel__content"&gt;
-      &lt;h3&gt;A first panel&lt;/h3&gt;
-      &lt;p&gt;Here the content.&lt;/p&gt;
-    &lt;/div&gt;&lt;!--
- --&gt;&lt;div class="carrousel__content"&gt;
-      &lt;h3&gt;A second panel&lt;/h3&gt;
-      &lt;p&gt;Here the content.&lt;/p&gt;
-    &lt;/div&gt;&lt;!--
- --&gt;&lt;div class="carrousel__content"&gt;
-      &lt;h3&gt;A third panel&lt;/h3&gt;
-      &lt;p&gt;Here the content.&lt;/p&gt;
-    &lt;/div&gt;
+    <div class="carrousel__content">
+      <h3>A first panel</h3>
+      <p>Here the content.</p>
+    </div><!--
+ --><div class="carrousel__content">
+      <h3>A second panel</h3>
+      <p>Here the content.</p>
+    </div><!--
+ --><div class="carrousel__content">
+      <h3>A third panel</h3>
+      <p>Here the content.</p>
+    </div>
           
-  &lt;/div&gt;
-&lt;/div&gt;
+  </div>
+</div>
 ```
 
 Keyboard navigation is supported, based on ARIA DP (http://www.w3.org/TR/2013/WD-wai-aria-practices-20130307/#tabpanel && http://www.oaa-accessibility.org/examplep/tabpanel1/):

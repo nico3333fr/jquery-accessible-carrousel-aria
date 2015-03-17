@@ -1,5 +1,5 @@
 # jQuery Accessible Carrousel using <abbr title="Accessible Rich Internet Application">ARIA</abbr>
-===========================
+
 <p>This jQuery plugin will transform a simple list of <code>div</code>’s and <code>hx</code> into a <strong>fantastic-shiny carrousel system</strong>, using <abbr title="Accessible Rich Internet Application">ARIA</abbr>.</p>
 ===========================
 ```
@@ -30,7 +30,18 @@
   </div>
 </div>
 ```
+===========================
+# How it works
 
+Basically:
+
+- An ordered list ```ol class="js-carrousel__control__list"``` is inserted before all elements
+- A div with a button is inserted between carrousel contents and the first control list. It is the “previous” button.
+- Another one is inserted after all carrousel contents, for the… “next” button.
+- Once the HTML markup is set up in a logical order for keyboard in the DOM, all ARIA attributes are added to make the link between tab buttons and tab contents, to know which one is related to which other.
+- Keyboard shortcuts of ARIA Design Pattern for tabpanels are added, and you can easily navigate and use the carrousel.
+
+===========================
 Keyboard navigation is supported, based on ARIA DP (http://www.w3.org/TR/2013/WD-wai-aria-practices-20130307/#tabpanel && http://www.oaa-accessibility.org/examplep/tabpanel1/):
 
 __If you focus in the carrousel "buttons"__

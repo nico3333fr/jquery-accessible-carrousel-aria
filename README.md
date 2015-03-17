@@ -31,7 +31,7 @@
 </div>
 ```
 ===========================
-# How it works
+## How it works
 
 Basically:
 
@@ -42,6 +42,8 @@ Basically:
 - Keyboard shortcuts of ARIA Design Pattern for tabpanels are added, and you can easily navigate and use the carrousel.
 
 ===========================
+## Keyboard
+
 Keyboard navigation is supported, based on ARIA DP (http://www.w3.org/TR/2013/WD-wai-aria-practices-20130307/#tabpanel && http://www.oaa-accessibility.org/examplep/tabpanel1/):
 
 __If you focus in the carrousel "buttons"__
@@ -57,6 +59,8 @@ __If you focus in a carrousel content__
  
 __Warning__: Ctrl+PageUp/PageDown combination could activate for some browsers a switch of browser tabs. Nothing to do for this, as far as I know (if you have a solution, let me know).
 
+===========================
+## Demo
 
 A demo page is here: http://a11y.nicolas-hoffmann.net/carrousel/ 
 

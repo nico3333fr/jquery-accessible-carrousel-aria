@@ -16,7 +16,13 @@ $(document).ready(function(){
                                                 'MozTransition'         : 'transitionend',
                                                 'OTransition'           : 'oTransitionEnd otransitionend',
                                                 'msTransition'          : 'MSTransitionEnd',
-                                                'transition'            : 'transitionend'
+                                                'transition'            : 'transitionend',
+                                                'webkitAnimation'       : 'webkitAnimationEnd',
+                                                'MozAnimation'          : 'animationend',
+                                                'OTransition'           : 'oAnimationEnd oanimationend',
+                                                'msAnimation'           : 'msAnimationEnd',
+                                                'animation'             : 'animationend'
+                                                   
                                         };
                                        
                                 for ( i in transitions ) {
@@ -28,13 +34,11 @@ $(document).ready(function(){
                                 return "NextSlide";     // CSS transitions not supported
                         },
                         transEndEventName = getTransEndEventName();
-                // Do something when the transition ends
+                // Do something when the transition/animation ends
                 $("body").on( transEndEventName, ".slide .carrousel__content", function(e) {
                         var $this = $(this),
                             $parent = $this.parents( ".carrousel" );
-
                         $parent.find('.carrousel__content[aria-hidden=true]').addClass('visibility-off');
-                        
                 } );
           
           $carrousel_container.each( function(index_carrousel_container) {
@@ -131,11 +135,10 @@ $(document).ready(function(){
                               $this.prepend('<' + $carrousel_hx + ' class="invisible" tabindex="0">' + $carrousel_span_text + ' ' + $index_readable + '</' + $carrousel_hx + '>');
                               $carrousel_span_text_final = $carrousel_span_text  + ' ' + $index_readable;
                               }
-                      // ici le span hx
                       
                       
                       navigation = navigation + '<li class="js-carrousel__control__list__item ' + $carrousel_prefix_classes + 'carrousel__control__list__item" role="presentation"><a class="js-carrousel__control__list__link  ' + $carrousel_prefix_classes + 'carrousel__control__list__link" id="label_' +  $content_id + '" role="tab" aria-controls="' + $content_id +'" tabindex="-1" aria-selected="false">';
-                      //href="#' + $content_id + '"
+
                       navigation = navigation + '<span class="' + $carrousel_prefix_classes + 'carrousel__control__list__text';
                       if ( $carrousel_span_text_class !== '' ){
                          navigation = navigation + ' ' + $carrousel_span_text_class ;
@@ -245,15 +248,31 @@ $(document).ready(function(){
           
           /* Events ---------------------------------------------------------------------------------------------------------- */
           /* click on a tab link */
-          $( "body" ).on( "click", ".js-carrousel__control__list__link", function( event ) {
+          $( "body" ).on( "click", ".js-carrousel__control__list__link", function( event, additionnal ) {
                   var $this = $( this ),
                        $parent = $this.parents( ".carrousel" ),
                        $tab_linked = $( "#" + $this.attr( "aria-controls" ) ),
                        $index_tab,
                        $previous_content,
-                       $carrousel_container;
-                  
-                  $carrousel_container = $parent.find( ".carrousel__container" );
+                       $carrousel_container = $parent.find( ".carrousel__container" ),
+                       $carrousel_hx = $carrousel_container.attr('data-carrousel-hx'),
+                       $carrousel_existing_hx = $carrousel_container.attr('data-carrousel-existing-hx'),
+                       $carrousel_hx_final = '';
+
+                  if ( typeof $carrousel_hx === "undefined" || $carrousel_hx === "undefined" || $carrousel_hx === "" ) {
+                      $carrousel_hx = '';
+                      }
+                  if ( typeof $carrousel_existing_hx === "undefined" || $carrousel_existing_hx === "undefined" && $carrousel_existing_hx === "" ) {
+                      $carrousel_existing_hx = ''; 
+                      }
+
+                  if ($carrousel_existing_hx != ''){
+                      $carrousel_hx_final = $carrousel_existing_hx;
+                      }
+                      else {
+                            $carrousel_hx_final = $carrousel_hx;
+                           }
+
                   
                   $parent.find('.carrousel__content').removeClass('visibility-off');
                   
@@ -292,7 +311,19 @@ $(document).ready(function(){
                   // replace .carrouselslide-1-x by .carrouselslide-1-$index_tab 
                   $parent.find( ".carrousel__container").removeClass($previous_content).addClass($new_content).trigger("NextSlide");
                   
-                  
+                  // if coming from button next/prev, add focus to next/prev content
+                  if (additionnal == 'next' || additionnal == 'prev') {
+                    
+                    $parent.find( ".carrousel__container div").one(
+                              "webkitTransitionEnd MSTransitionEnd oTransitionEnd transitionend animationend webkitAnimationEnd oAnimationEnd oanimationend msAnimationEnd animationend",
+                              function() {
+                                  $(this).data("transitioning", false);  // Transition has ended.
+                                  $tab_linked.children($carrousel_hx_final).focus();
+                              }
+                          );
+                    
+                  }
+
                   event.preventDefault();
           } )
           /* Key down in tabs */
@@ -401,36 +432,48 @@ $(document).ready(function(){
           /* click on a button prev/next */
           // prev
           $( "body" ).on( "click", ".js-carrousel__button__previous button", function( event ) {
+                  
+                  event.preventDefault();
+                  
                   var $this = $( this ),
-                  $parent = $this.parents( ".carrousel" );
+                      $parent = $this.parents( ".carrousel" ),
+                      $container = $parent.find( ".carrousel__container" );
+                           
                   // find previous tab
                   $activated = $parent.find( '.js-carrousel__control__list__link[aria-selected="true"]' ).parent();
                   // if we are on first => activate last
                   if ( $activated.is( ".js-carrousel__control__list__item:first-child" ) ) {
-                      $parent.find( ".js-carrousel__control__list__item:last-child a" ).click().focus();
+                      $parent.find( ".js-carrousel__control__list__item:last-child a" ).trigger('click', 'prev');
                   }
                   // else activate previous
                   else {
-                        $activated.prev().children( ".js-carrousel__control__list__link" ).click().focus();
+                        $activated.prev().children( ".js-carrousel__control__list__link" ).trigger('click', 'prev');
                         }
-                  event.preventDefault();
+
                   
           })
           // next
           .on( "click", ".js-carrousel__button__next button", function( event ) {
+          
+                  event.preventDefault();
+                  
                   var $this = $( this ),
-                  $parent = $this.parents( ".carrousel" );
+                      $parent = $this.parents( ".carrousel" ),
+                      $container = $parent.find( ".carrousel__container" );
+                           
                   // find next tab
                   $activated = $parent.find( '.js-carrousel__control__list__link[aria-selected="true"]' ).parent();
                   // if we are on last => activate first
                   if ( $activated.is( ".js-carrousel__control__list__item:last-child" ) ) {
-                      $parent.find( ".js-carrousel__control__list__item:first-child a" ).click().focus();
+                      $parent.find( ".js-carrousel__control__list__item:first-child a" ).trigger('click', 'next');
                   }
                   // else activate next
                   else {
-                        $activated.next().children( ".js-carrousel__control__list__link" ).click().focus();
+                        $activated.next().children( ".js-carrousel__control__list__link" ).trigger('click', 'next');
                         }
-                  event.preventDefault();
+
+
+                  
           });
          
          

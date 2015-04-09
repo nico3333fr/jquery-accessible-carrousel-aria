@@ -57,6 +57,9 @@ __If you focus in a carrousel content__
 - use Ctrl PageUp to Set focus on the previous carrousel button for the currently displayed carrousel tab
 - use Ctrl PageDown to Set focus on the next carrousel button for the currently displayed carrousel tab
  
+__New: if you focus on next/prev buttons__
+- if you activate it, the focus will be put onto next/prev contents, not on control list.
+
 __Warning__: Ctrl+PageUp/PageDown combination could activate for some browsers a switch of browser tabs. Nothing to do for this, as far as I know (if you have a solution, let me know).
 
 ===========================

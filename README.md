@@ -2,7 +2,7 @@
 
 <p>This jQuery plugin will transform a simple list of <code>div</code>’s and <code>hx</code> into a <strong>fantastic-shiny carrousel system</strong>, using <abbr title="Accessible Rich Internet Application">ARIA</abbr>.</p>
 ===========================
-```
+```html
 <div class="carrousel relative">      
   <div class="carrousel__container mod--hidden" 
    data-carrousel-btn-previous-img="./arrow_back.png" 

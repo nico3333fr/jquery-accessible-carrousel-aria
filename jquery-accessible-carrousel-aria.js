@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+        /*
+         * jQuery Accessible Carrousel System, using ARIA
+         * Website: http://a11y.nicolas-hoffmann.net/carrousel/
+         * License MIT: https://github.com/nico3333fr/jquery-accessible-carrousel-aria/blob/master/LICENSE
+         */
         /* loading aria carrousel ----------------------------------------------------------------------------------------------------------------------- */
         var $carrousel_container = $('.carrousel__container'),
               $carrousel_content = $('.carrousel__content');

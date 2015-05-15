@@ -48,69 +48,30 @@ $(document).ready(function(){
           
           $carrousel_container.each( function(index_carrousel_container) {
               var $this_carrousel_container = $(this) ,
+                  options = $this_carrousel_container.data(),
                   $index_carrousel = index_carrousel_container + 1 ,
-                  $carrousel_prefix_classes = $this_carrousel_container.attr('data-carrousel-prefix-classes'),
-                  $carrousel_span_text_class = $this_carrousel_container.attr('data-carrousel-span-text-class'),
-                  $carrousel_span_text  = $this_carrousel_container.attr('data-carrousel-span-text'),
+                  $carrousel_prefix_classes = options.carrouselPrefixClasses + '-' || '',
+                  $carrousel_span_text_class = options.carrouselSpanTextClass || '',
+                  $carrousel_span_text  = options.carrouselSpanText || '',
                   $carrousel_span_text_final = '',
-                  $carrousel_transition = $this_carrousel_container.attr('data-carrousel-transition'),
-                  $carrousel_btn_previous_img = $this_carrousel_container.attr('data-carrousel-btn-previous-img'),
-                  $carrousel_btn_next_img = $this_carrousel_container.attr('data-carrousel-btn-next-img'),
-                  $carrousel_btn_previous_text = $this_carrousel_container.attr('data-carrousel-btn-previous-text'),
-                  $carrousel_btn_next_text = $this_carrousel_container.attr('data-carrousel-btn-next-text'),
-                  $carrousel_hx = $this_carrousel_container.attr('data-carrousel-hx'),
-                  $carrousel_existing_hx = $this_carrousel_container.attr('data-carrousel-existing-hx'),
-                  $carrousel_hx_final = '';
+                  $carrousel_transition = options.carrouselTransition || '',
+                  $carrousel_btn_previous_img = options.carrouselBtnPreviousImg || '',
+                  $carrousel_btn_next_img = options.carrouselBtnNextImg || '',
+                  $carrousel_btn_previous_text = options.carrouselBtnPreviousText || '',
+                  $carrousel_btn_next_text = options.carrouselBtnNextText || '',
+                  $carrousel_hx = options.carrouselHx || '',
+                  $carrousel_existing_hx = options.carrouselExistingHx || '',
+                  $carrousel_hx_final = $carrousel_existing_hx != '' ? $carrousel_existing_hx : $carrousel_hx;
                   
-              // global prefix class styles
-              if ( typeof $carrousel_prefix_classes === "undefined" || $carrousel_prefix_classes === "undefined" || $carrousel_prefix_classes === "" ) {
-                   $carrousel_prefix_classes = '';
-              }
-              else { 
-                   $carrousel_prefix_classes = $carrousel_prefix_classes + '-' ;
-                   }
-              if ( typeof $carrousel_span_text_class === "undefined" || $carrousel_span_text_class === "undefined" || $carrousel_span_text_class === "" ) {
-                  $carrousel_span_text_class = '';
-                  }
-              if ( typeof $carrousel_span_text === "undefined" || $carrousel_span_text === "undefined" || $carrousel_span_text === "" ) {
-                  $carrousel_span_text = '';
-                  }
-              if ( typeof $carrousel_transition === "undefined" || $carrousel_transition === "undefined" || $carrousel_transition === "" ) {
-                  $carrousel_transition = '';
-                  }
-                  else { $this_carrousel_container.addClass($carrousel_transition); }
 
+              if ( $carrousel_transition != "" ) {
+                  $this_carrousel_container.addClass($carrousel_transition);
+                  }
               
-              if ( typeof $carrousel_btn_previous_img === "undefined" || $carrousel_btn_previous_img === "undefined" || $carrousel_btn_previous_img === "" ) {
-                  $carrousel_btn_previous_img = '';
-                  }
-              if ( typeof $carrousel_btn_next_img === "undefined" || $carrousel_btn_next_img === "undefined" || $carrousel_btn_next_img === "" ) {
-                  $carrousel_btn_next_img = '';
-                  }
-              if ( typeof $carrousel_btn_previous_text === "undefined" || $carrousel_btn_previous_text === "undefined" || $carrousel_btn_previous_text === "" ) {
-                  $carrousel_btn_previous_text = '';
-                  }
-              if ( typeof $carrousel_btn_next_text === "undefined" || $carrousel_btn_next_text === "undefined" || $carrousel_btn_next_text === "" ) {
-                  $carrousel_btn_next_text = '';
-                  }
-                  
-              if ( typeof $carrousel_hx === "undefined" || $carrousel_hx === "undefined" || $carrousel_hx === "" ) {
-                  $carrousel_hx = '';
-                  }
-              if ( typeof $carrousel_existing_hx === "undefined" || $carrousel_existing_hx === "undefined" && $carrousel_existing_hx === "" ) {
-                  $carrousel_existing_hx = ''; 
-                  }
               // information to know which tab is activated
               $this_carrousel_container.addClass ('carrouselslide-' + $index_carrousel + '-1' )
                                        .addClass ($carrousel_prefix_classes + 'carrousel__container' )
                                        .addClass ($carrousel_prefix_classes + 'carrousel__container--' + $index_carrousel );
-              
-              if ($carrousel_existing_hx != ''){
-                  $carrousel_hx_final = $carrousel_existing_hx;
-                  }
-                  else {
-                        $carrousel_hx_final = $carrousel_hx;
-                        }
               
               
               /* insert list before carrousel__container  -------------------------------------------------------------------------- */

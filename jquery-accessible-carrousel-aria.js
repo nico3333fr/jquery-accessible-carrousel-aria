@@ -108,7 +108,7 @@ $(document).ready(function(){
                       navigation = navigation + '<span class="' + $carrousel_prefix_classes + 'carrousel__control__list__text';
                       if ( $carrousel_span_text_class !== '' ){
                          navigation = navigation + ' ' + $carrousel_span_text_class ;
-                      }
+                         }
                       navigation = navigation + '">' + $carrousel_span_text_final + '</span></a></li>';
               } );
               navigation = navigation + '</ol>';
@@ -121,11 +121,11 @@ $(document).ready(function(){
 
                   var previous_button = '<div class="js-carrousel__button-container ' + $carrousel_prefix_classes + 'carrousel__button-container js-carrousel__button__previous ' + $carrousel_prefix_classes + 'carrousel__button__previous ' + $carrousel_prefix_classes + 'carrousel__button__previous--'+ $index_carrousel +'"><button title="' + $carrousel_btn_previous_text + '" class="js-carrousel__button__button ' + $carrousel_prefix_classes + 'carrousel__button__button">';
                   if ($carrousel_btn_previous_img !== ''){
-                       previous_button = previous_button + '<img src="' + $carrousel_btn_previous_img + '" alt="' + $carrousel_btn_previous_text + '" class="carrousel__button__img" />';
-                  }
-                  else {
-                       previous_button = previous_button + $carrousel_btn_previous_text;
-                       }
+                     previous_button = previous_button + '<img src="' + $carrousel_btn_previous_img + '" alt="' + $carrousel_btn_previous_text + '" class="carrousel__button__img" />';
+                     }
+                     else {
+                          previous_button = previous_button + $carrousel_btn_previous_text;
+                          }
                   previous_button = previous_button + '</button>';
                   $( previous_button ).insertBefore($this_carrousel_container);
               
@@ -136,11 +136,11 @@ $(document).ready(function(){
                             
                   var next_button = '<div class="js-carrousel__button-container ' + $carrousel_prefix_classes + 'carrousel__button-container js-carrousel__button__next ' + $carrousel_prefix_classes + 'carrousel__button__next ' + $carrousel_prefix_classes + 'carrousel__button__next--'+ $index_carrousel +'"><button title="' + $carrousel_btn_next_text + '" class="js-carrousel__button__button ' + $carrousel_prefix_classes + 'carrousel__button__button">';
                   if ($carrousel_btn_next_img !== ''){
-                       next_button = next_button + '<img src="' + $carrousel_btn_next_img + '" alt="' + $carrousel_btn_next_text + '" class="carrousel__button__img" />';
-                  }
-                  else {
-                       next_button = next_button + $carrousel_btn_next_text;
-                       }
+                     next_button = next_button + '<img src="' + $carrousel_btn_next_img + '" alt="' + $carrousel_btn_next_text + '" class="carrousel__button__img" />';
+                     }
+                     else {
+                          next_button = next_button + $carrousel_btn_next_text;
+                          }
                   next_button = next_button + '</button>';
                   
                   $( next_button ).insertAfter($this_carrousel_container);
@@ -154,7 +154,7 @@ $(document).ready(function(){
              if ($( "#" + hash + ".carrousel__content" ).length === 0 ){
                 hash = '';
                 }
-          }
+             }
           
           
           /* then check defaults ---------------------------------------------------------------------------------------------------------- */
@@ -183,7 +183,6 @@ $(document).ready(function(){
                         if ( classes[i].substr(0,15) === "carrouselslide-" ){
                             $previous_content = classes[i];
                             found = true;
-
                            }
                         i++;
                         }
@@ -207,7 +206,7 @@ $(document).ready(function(){
                           });
                           $first_content.removeAttr( "aria-hidden" ).removeClass('visibility-off');
 
-                  } 
+                     } 
           } );
           
           
@@ -250,7 +249,6 @@ $(document).ready(function(){
                         if ( classes[i].substr(0,15) === "carrouselslide-" ){
                             $previous_content = classes[i];
                             found = true;
-
                            }
                         i++;
                         }
@@ -280,15 +278,15 @@ $(document).ready(function(){
                   // if coming from button next/prev, add focus to next/prev content
                   if (additionnal == 'next' || additionnal == 'prev') {
                     
-                    $parent.find( ".carrousel__container div").one(
+                     $parent.find( ".carrousel__container div").one(
                               "webkitTransitionEnd MSTransitionEnd oTransitionEnd transitionend animationend webkitAnimationEnd oAnimationEnd oanimationend msAnimationEnd animationend",
                               function() {
                                   $(this).data("transitioning", false);  // Transition has ended.
-                                  $tab_linked.children($carrousel_hx_final).focus();
+                                  setTimeout(function(){ $tab_linked.children($carrousel_hx_final).focus(); }, 0);
                               }
                           );
                     
-                  }
+                     }
 
                   event.preventDefault();
           } )
@@ -312,12 +310,14 @@ $(document).ready(function(){
                               $activated = $parent.find( '.js-carrousel__control__list__link[aria-selected="true"]' ).parent();
                               // if we are on first => activate last
                               if ( $activated.is( ".js-carrousel__control__list__item:first-child" ) ) {
-                                      $parent.find( ".js-carrousel__control__list__item:last-child a" ).click().focus();
-                              }
-                              // else activate previous
-                              else {
-                                      $activated.prev().children( ".js-carrousel__control__list__link" ).click().focus();
-                              }
+                                 $parent.find( ".js-carrousel__control__list__item:last-child a" ).click();
+                                 setTimeout(function(){ $parent.find( ".js-carrousel__control__list__item:last-child a" ).focus(); }, 0);
+                                 }
+                                 // else activate previous
+                                 else {
+                                      $activated.prev().children( ".js-carrousel__control__list__link" ).click();
+                                      setTimeout(function(){ $activated.prev().children( ".js-carrousel__control__list__link" ).focus(); }, 0);
+                                      }
                               event.preventDefault();
                       }
                       // strike down or right in the tab
@@ -326,22 +326,26 @@ $(document).ready(function(){
                               $activated = $parent.find( '.js-carrousel__control__list__link[aria-selected="true"]' ).parent();
                               // if we are on last => activate first
                               if ( $activated.is( ".js-carrousel__control__list__item:last-child" ) ) {
-                                      $parent.find( ".js-carrousel__control__list__item:first-child a" ).click().focus();
-                              }
-                              // else activate next
-                              else {
-                                      $activated.next().children( ".js-carrousel__control__list__link" ).click().focus();
-                              }
+                                  $parent.find( ".js-carrousel__control__list__item:first-child a" ).click();
+                                  setTimeout(function(){ $parent.find( ".js-carrousel__control__list__item:first-child a" ).focus(); }, 0);
+                                  }
+                                  // else activate next
+                                  else {
+                                       $activated.next().children( ".js-carrousel__control__list__link" ).click();
+                                       setTimeout(function(){ $activated.next().children( ".js-carrousel__control__list__link" ).focus(); }, 0);
+                                       }
                               event.preventDefault();
                       }
                       else if ( event.keyCode == 36 ) {
                               // activate first tab
-                              $parent.find( ".js-carrousel__control__list__item:first-child a" ).click().focus();
+                              $parent.find( ".js-carrousel__control__list__item:first-child a" ).click();
+                              setTimeout(function(){ $parent.find( ".js-carrousel__control__list__item:first-child a" ).focus(); }, 0);
                               event.preventDefault();
                       }
                       else if ( event.keyCode == 35 ) {
                               // activate last tab
-                              $parent.find( ".js-carrousel__control__list__item:last-child a" ).click().focus();
+                              $parent.find( ".js-carrousel__control__list__item:last-child a" ).click();
+                              setTimeout(function(){ $parent.find( ".js-carrousel__control__list__item:last-child a" ).focus(); }, 0);
                               event.preventDefault();
                       }
                   
@@ -356,42 +360,46 @@ $(document).ready(function(){
                       
                       // CTRL up/Left
                       if ( (event.keyCode == 37 || event.keyCode == 38) && event.ctrlKey ) {
-                               $tab_to_focus = $this.attr('aria-labelledby');
-                               $("#" + $tab_to_focus).focus();
-                               event.preventDefault();                             
+                         $tab_to_focus = $this.attr('aria-labelledby');
+                         setTimeout(function(){ $("#" + $tab_to_focus).focus(); }, 0);
+                         event.preventDefault();                             
                          }
                       // CTRL PageUp
                       if ( event.keyCode == 33 && event.ctrlKey ) {
-                               $tab_focused = $this.attr('aria-labelledby');
-                               $("#" + $tab_focused).focus();
+                          $tab_focused = $this.attr('aria-labelledby');
+                          setTimeout(function(){ $("#" + $tab_focused).focus(); }, 0);
+
+                          $parent = $("#" + $tab_focused).parent();
                                
-                               $parent = $("#" + $tab_focused).parent();
-                               
-                               // if we are on first => activate last
-                               if ( $parent.is( ".js-carrousel__control__list__item:first-child" ) ) {
-                                     $parent.parent().find( ".js-carrousel__control__list__item:last-child a" ).click().focus();
-                               }
-                               // else activate prev
-                               else {
-                                     $parent.prev().children( ".js-carrousel__control__list__link" ).click().focus();
-                               }
-                               event.preventDefault();
+                          // if we are on first => activate last
+                          if ( $parent.is( ".js-carrousel__control__list__item:first-child" ) ) {
+                             $parent.parent().find( ".js-carrousel__control__list__item:last-child a" ).click();
+                             setTimeout(function(){ $parent.parent().find( ".js-carrousel__control__list__item:last-child a" ).focus(); }, 0);
+                             }
+                             // else activate prev
+                             else {
+                                   $parent.prev().children( ".js-carrousel__control__list__link" ).click();
+                                   setTimeout(function(){ $parent.prev().children( ".js-carrousel__control__list__link" ).focus(); }, 0);
+                                   }
+                         event.preventDefault();
                          }
                       // CTRL PageDown
                       if ( event.keyCode == 34 && event.ctrlKey ) {
-                               $tab_focused = $this.attr('aria-labelledby');
-                               $("#" + $tab_focused).focus();
+                         $tab_focused = $this.attr('aria-labelledby');
+                         setTimeout(function(){ $("#" + $tab_focused).focus(); }, 0);
                                
-                               $parent = $("#" + $tab_focused).parent();
-                               // if we are on last => activate first
-                               if ( $parent.is( ".js-carrousel__control__list__item:last-child" ) ) {
-                                     $parent.parent().find( ".js-carrousel__control__list__item:first-child a" ).click().focus();
-                               }
-                               // else activate next
-                               else {
-                                     $parent.next().children( ".js-carrousel__control__list__link" ).click().focus();
-                               }
-                               event.preventDefault();
+                         $parent = $("#" + $tab_focused).parent();
+                         // if we are on last => activate first
+                         if ( $parent.is( ".js-carrousel__control__list__item:last-child" ) ) {
+                            $parent.parent().find( ".js-carrousel__control__list__item:first-child a" ).click();
+                            setTimeout(function(){ $parent.parent().find( ".js-carrousel__control__list__item:first-child a" ).focus(); }, 0);
+                            }
+                            // else activate next
+                            else {
+                                  $parent.next().children( ".js-carrousel__control__list__link" ).click();
+                                  setTimeout(function(){ $parent.next().children( ".js-carrousel__control__list__link" ).focus(); }, 0);
+                                 }
+                         event.preventDefault();
                          }
           
           } );
@@ -410,11 +418,11 @@ $(document).ready(function(){
                   // if we are on first => activate last
                   if ( $activated.is( ".js-carrousel__control__list__item:first-child" ) ) {
                       $parent.find( ".js-carrousel__control__list__item:last-child a" ).trigger('click', 'prev');
-                  }
-                  // else activate previous
-                  else {
-                        $activated.prev().children( ".js-carrousel__control__list__link" ).trigger('click', 'prev');
-                        }
+                     }
+                     // else activate previous
+                     else {
+                          $activated.prev().children( ".js-carrousel__control__list__link" ).trigger('click', 'prev');
+                          }
 
                   
           })
@@ -432,11 +440,11 @@ $(document).ready(function(){
                   // if we are on last => activate first
                   if ( $activated.is( ".js-carrousel__control__list__item:last-child" ) ) {
                       $parent.find( ".js-carrousel__control__list__item:first-child a" ).trigger('click', 'next');
-                  }
-                  // else activate next
-                  else {
-                        $activated.next().children( ".js-carrousel__control__list__link" ).trigger('click', 'next');
-                        }
+                      }
+                      // else activate next
+                      else {
+                           $activated.next().children( ".js-carrousel__control__list__link" ).trigger('click', 'next');
+                           }
 
 
                   

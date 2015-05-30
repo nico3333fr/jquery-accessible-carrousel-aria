@@ -1,0 +1,26 @@
+{
+  "name": "jquery-accessible-carrousel-aria",
+  "version": "1.0",
+  "main": "jquery-accessible-carrousel-aria.js",
+  "description": "jQuery Accessible Carrousel using ARIA",
+  "authors": [
+    "Nicolas Hoffmann (http://www.nicolas-hoffmann.net)"
+  ],
+  "homepage": "http://a11y.nicolas-hoffmann.net/carrousel/",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nico3333fr/jquery-accessible-carrousel-aria.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "accordion",
+    "a11y",
+    "accessibility",
+    "ARIA"
+  ],
+  "dependencies": {
+    "jquery": ">1.11.1"
+  },
+  "devDependencies": {
+  }
+}

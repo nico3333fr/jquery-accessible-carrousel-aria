@@ -82,6 +82,8 @@ It can be included for one, two carrousels systems or more in a page.
 ===========================
 ## How to use it
 
+You may use <code>npm i jquery-accessible-carrousel-aria</code>. Or download it.
+
 
 ```html
 <div class="carrousel relative">      

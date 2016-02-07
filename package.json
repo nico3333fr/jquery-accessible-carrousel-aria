@@ -1,0 +1,40 @@
+{
+  "title": "jQuery accessible carrousel using ARIA",
+  "name": "jquery-accessible-carrousel-aria",
+  "description": "The jQuery plugin will transform a simple list of div’s and hx into a fantastic-shiny carrousel system, using ARIA.",
+  "version": "1.2.0",
+  "keywords": [
+    "Accessibility",
+    "ARIA",
+    "Tabs",
+    "Tab panel",
+    "Carrousel",
+    "a11y"
+  ],
+  "author": [
+    {
+      "name": "Nicolas Hoffmann",
+      "email": "dante3333@gmail.com",
+      "web": "http://www.nicolas-hoffmann.net/"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.0.0"
+  },
+  "bugs": {
+    "web": "https://github.com/nico3333fr/jquery-accessible-carrousel-aria/issues"
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/nico3333fr/jquery-accessible-carrousel-aria.git"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "MIT",
+      "url": "https://github.com/nico3333fr/jquery-accessible-carrousel-aria/blob/master/LICENSE"
+    }
+  ],
+  "homepage": "http://a11y.nicolas-hoffmann.net/carrousel/"
+}

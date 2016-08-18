@@ -95,7 +95,7 @@ $(document).ready(function(){
                       // focusable hx
                       if ($carrousel_existing_hx != ''){
                          $this.find($carrousel_existing_hx).attr("tabindex", "0");
-                         $carrousel_span_text_final = $this.find($carrousel_existing_hx).html();
+                         $carrousel_span_text_final = $this.find($carrousel_existing_hx).text();
                          }
                          else {
                               $this.prepend('<' + $carrousel_hx + ' class="invisible" tabindex="0">' + $carrousel_span_text + ' ' + $index_readable + '</' + $carrousel_hx + '>');

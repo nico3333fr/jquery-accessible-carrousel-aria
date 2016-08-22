@@ -435,6 +435,7 @@ $(document).ready(function() {
             event.preventDefault();
 
             var $this = $(this),
+                $activated,
                 $parent = $this.parents(".carrousel"),
                 $container = $parent.find(".carrousel__container");
 
@@ -457,6 +458,7 @@ $(document).ready(function() {
             event.preventDefault();
 
             var $this = $(this),
+                $activated,
                 $parent = $this.parents(".carrousel"),
                 $container = $parent.find(".carrousel__container");
 

@@ -168,7 +168,7 @@
                     "tabindex": 0
                 });
 
-				$carrousel_container.trigger('carrousel:slide-changed');
+                $carrousel_container.trigger('carrousel:slide-changed');
                 // update of carrouselslide-x-x
                 $carrousel_container = $("#" + hash + ".carrousel__content").parents(".carrousel__container");
 
@@ -204,7 +204,7 @@
                         "aria-selected": "true",
                         "tabindex": 0
                     });
-					$carrousel_container.trigger('carrousel:slide-changed');
+                    $carrousel_container.trigger('carrousel:slide-changed');
                     $first_content.removeAttr("aria-hidden").removeClass('visibility-off');
 
                 }
@@ -262,7 +262,7 @@
                     "aria-selected": "true",
                     "tabindex": 0
                 });
-				$carrousel_container.trigger('carrousel:slide-changed');
+                $carrousel_container.trigger('carrousel:slide-changed');
                 // add aria-hidden on all tabs
                 $parent.find(".carrousel__content").attr({
                     "aria-hidden": "true"
@@ -479,6 +479,6 @@
 
             });
 
-			$carrousel_container.trigger('carrousel:initialized');
+        $carrousel_container.trigger('carrousel:initialized');
     });
 })(jQuery);

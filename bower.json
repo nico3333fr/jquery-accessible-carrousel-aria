@@ -1,6 +1,6 @@
 {
   "name": "jquery-accessible-carrousel-aria",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "main": "jquery-accessible-carrousel-aria.js",
   "description": "jQuery Accessible Carrousel using ARIA",
   "authors": [

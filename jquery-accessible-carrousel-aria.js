@@ -3,6 +3,7 @@
 
         /*
          * jQuery Accessible Carrousel System, using ARIA
+         * @version v1.5.1
          * Website: http://a11y.nicolas-hoffmann.net/carrousel/
          * License MIT: https://github.com/nico3333fr/jquery-accessible-carrousel-aria/blob/master/LICENSE
          */

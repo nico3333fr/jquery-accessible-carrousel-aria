@@ -3,8 +3,8 @@
 
         /*
          * jQuery Accessible Carrousel System, using ARIA
-         * @version v1.5.1
-         * Website: http://a11y.nicolas-hoffmann.net/carrousel/
+         * @version v1.6.0         
+         * Website: https://a11y.nicolas-hoffmann.net/carrousel/
          * License MIT: https://github.com/nico3333fr/jquery-accessible-carrousel-aria/blob/master/LICENSE
          */
         /* loading aria carrousel ----------------------------------------------------------------------------------------------------------------------- */
@@ -43,7 +43,7 @@
                 },
                 transEndEventName = getTransEndEventName();
             // Do something when the transition/animation ends
-            $("body").on(transEndEventName, ".slide .carrousel__content", function(e) {
+            $body.on(transEndEventName, ".slide .carrousel__content", function(e) {
                 var $this = $(this),
                     $parent = $this.parents(".carrousel");
                 $parent.find('.carrousel__content[aria-hidden=true]').addClass('visibility-off');
@@ -61,7 +61,9 @@
                     $carrousel_btn_previous_img = options.carrouselBtnPreviousImg || '',
                     $carrousel_btn_next_img = options.carrouselBtnNextImg || '',
                     $carrousel_btn_previous_text = options.carrouselBtnPreviousText || '',
+                    $carrousel_btn_previous_textflat = $($carrousel_btn_previous_text).text() || $carrousel_btn_previous_text,
                     $carrousel_btn_next_text = options.carrouselBtnNextText || '',
+                    $carrousel_btn_next_textflat = $($carrousel_btn_next_text).text() || $carrousel_btn_next_text,
                     $carrousel_hx = options.carrouselHx || '',
                     $carrousel_existing_hx = options.carrouselExistingHx || '',
                     $carrousel_hx_final = $carrousel_existing_hx != '' ? $carrousel_existing_hx : $carrousel_hx;
@@ -121,9 +123,9 @@
                 /* Add previous/next buttons ----------------------------------------------------------------------------------------------------- */
                 if ($carrousel_btn_previous_text !== '') {
 
-                    var previous_button = '<div class="js-carrousel__button-container ' + $carrousel_prefix_classes + 'carrousel__button-container js-carrousel__button__previous ' + $carrousel_prefix_classes + 'carrousel__button__previous ' + $carrousel_prefix_classes + 'carrousel__button__previous--' + $index_carrousel + '"><button title="' + $carrousel_btn_previous_text + '" class="js-carrousel__button__button ' + $carrousel_prefix_classes + 'carrousel__button__button">';
+                    var previous_button = '<div class="js-carrousel__button-container ' + $carrousel_prefix_classes + 'carrousel__button-container js-carrousel__button__previous ' + $carrousel_prefix_classes + 'carrousel__button__previous ' + $carrousel_prefix_classes + 'carrousel__button__previous--' + $index_carrousel + '"><button type="button" title="' + $carrousel_btn_previous_textflat + '" class="js-carrousel__button__button ' + $carrousel_prefix_classes + 'carrousel__button__button">';
                     if ($carrousel_btn_previous_img !== '') {
-                        previous_button = previous_button + '<img src="' + $carrousel_btn_previous_img + '" alt="' + $carrousel_btn_previous_text + '" class="carrousel__button__img" />';
+                        previous_button = previous_button + '<img src="' + $carrousel_btn_previous_img + '" alt="' + $carrousel_btn_previous_textflat + '" class="carrousel__button__img" />';
                     } else {
                         previous_button = previous_button + $carrousel_btn_previous_text;
                     }
@@ -135,9 +137,9 @@
 
                 if ($carrousel_btn_next_text !== '') {
 
-                    var next_button = '<div class="js-carrousel__button-container ' + $carrousel_prefix_classes + 'carrousel__button-container js-carrousel__button__next ' + $carrousel_prefix_classes + 'carrousel__button__next ' + $carrousel_prefix_classes + 'carrousel__button__next--' + $index_carrousel + '"><button title="' + $carrousel_btn_next_text + '" class="js-carrousel__button__button ' + $carrousel_prefix_classes + 'carrousel__button__button">';
+                    var next_button = '<div class="js-carrousel__button-container ' + $carrousel_prefix_classes + 'carrousel__button-container js-carrousel__button__next ' + $carrousel_prefix_classes + 'carrousel__button__next ' + $carrousel_prefix_classes + 'carrousel__button__next--' + $index_carrousel + '"><button type="button" title="' + $carrousel_btn_next_textflat + '" class="js-carrousel__button__button ' + $carrousel_prefix_classes + 'carrousel__button__button">';
                     if ($carrousel_btn_next_img !== '') {
-                        next_button = next_button + '<img src="' + $carrousel_btn_next_img + '" alt="' + $carrousel_btn_next_text + '" class="carrousel__button__img" />';
+                        next_button = next_button + '<img src="' + $carrousel_btn_next_img + '" alt="' + $carrousel_btn_next_textflat + '" class="carrousel__button__img" />';
                     } else {
                         next_button = next_button + $carrousel_btn_next_text;
                     }

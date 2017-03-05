@@ -2,7 +2,7 @@
 
 <p>This jQuery plugin will transform a simple list of <code>div</code>’s and <code>hx</code> into a <strong>fantastic-shiny carrousel system</strong>, using <abbr title="Accessible Rich Internet Application">ARIA</abbr>.</p>
 
-A full demo is here: http://a11y.nicolas-hoffmann.net/carrousel/
+A full demo is here: https://a11y.nicolas-hoffmann.net/carrousel/
 
 
 ## Some informations
@@ -75,7 +75,7 @@ __Warning__: Ctrl+PageUp/PageDown combination could activate for some browsers a
 ===========================
 ## Demo
 
-A demo page is here: http://a11y.nicolas-hoffmann.net/carrousel/ 
+A demo page is here: https://a11y.nicolas-hoffmann.net/carrousel/ 
 
 It can be included for one, two carrousels systems or more in a page.
 

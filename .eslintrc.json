@@ -1,0 +1,24 @@
+{
+  "env": {
+    "node": true,
+    "browser": true,
+    "amd": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "modules" : true
+    },
+    "sourceType" : "module"
+  },
+  "globals": {
+    "jQuery": true
+  },
+  "plugins": [
+  ],
+  "rules": {
+    "comma-dangle": ["error", "ignore"],
+    "indent": ["error", 4]
+  }
+}

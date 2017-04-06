@@ -3,6 +3,7 @@
   "name": "jquery-accessible-carrousel-aria",
   "description": "The jQuery plugin will transform a simple list of div’s and hx into a fantastic-shiny carrousel system, using ARIA.",
   "version": "1.6.0",
+  "main": "jquery-accessible-carrousel-aria.js",
   "keywords": [
     "Accessibility",
     "ARIA",

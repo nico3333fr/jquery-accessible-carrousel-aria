@@ -36,7 +36,6 @@
                             'transition': 'transitionend',
                             'webkitAnimation': 'webkitAnimationEnd',
                             'MozAnimation': 'animationend',
-                            'OTransition': 'oAnimationEnd oanimationend',
                             'msAnimation': 'msAnimationEnd',
                             'animation': 'animationend'
 
@@ -52,7 +51,7 @@
                 },
                 transEndEventName = getTransEndEventName();
             // Do something when the transition/animation ends
-            $body.on(transEndEventName, ".slide .carrousel__content", function(e) {
+            $body.on(transEndEventName, ".slide .carrousel__content", function() {
                 var $this = $(this),
                     $parent = $this.parents(".carrousel");
                 $parent.find('.carrousel__content[aria-hidden=true]').addClass('visibility-off');
@@ -74,9 +73,7 @@
                     $carrousel_btn_next_text = options.carrouselBtnNextText || '',
                     $carrousel_btn_next_textflat = $($carrousel_btn_next_text).text() || $carrousel_btn_next_text,
                     $carrousel_hx = options.carrouselHx || '',
-                    $carrousel_existing_hx = options.carrouselExistingHx || '',
-                    $carrousel_hx_final = $carrousel_existing_hx != '' ? $carrousel_existing_hx : $carrousel_hx;
-
+                    $carrousel_existing_hx = options.carrouselExistingHx || '';
 
                 if ($carrousel_transition != "") {
                     $this_carrousel_container.addClass($carrousel_transition);
@@ -98,11 +95,11 @@
 
                     // add attributes
                     $this.attr({
-                            "role": "tabpanel",
-                            "id": $content_id,
-                            "aria-hidden": "true",
-                            "aria-labelledby": "label_" + $content_id
-                        })
+                        "role": "tabpanel",
+                        "id": $content_id,
+                        "aria-hidden": "true",
+                        "aria-labelledby": "label_" + $content_id
+                    })
                         .addClass('visibility-off')
                         .addClass($carrousel_prefix_classes + 'carrousel__content');
 
@@ -199,7 +196,7 @@
                     i++;
                 }
 
-                $index_tab = ($(".carrousel__content").index($("#" + hash + ".carrousel__content"))) + 1;
+                var $index_tab = ($(".carrousel__content").index($("#" + hash + ".carrousel__content"))) + 1;
                 var tab = $previous_content.split('-');
                 $new_content = tab[0] + '-' + tab[1] + '-' + $index_tab;
                 // replace .carrouselslide-1-x by .carrouselslide-1-$index_tab
@@ -208,7 +205,7 @@
 
             }
             // if no selected => select first
-            $(".carrousel").each(function(index) {
+            $(".carrousel").each(function() {
                 var $this = $(this),
                     $first_content = $this.find(".carrousel__content:first");
                 if ($this.find(".js-carrousel__control__list__link[aria-selected=true]").length === 0) {
@@ -229,6 +226,7 @@
         /* Events ---------------------------------------------------------------------------------------------------------- */
         /* click on a tab link */
         $body.on("click", ".js-carrousel__control__list__link", function(event, additionnal) {
+                /* eslint-disable indent */
                 var $this = $(this),
                     $parent = $this.parents(".carrousel"),
                     $tab_linked = $("#" + $this.attr("aria-controls")),
@@ -307,6 +305,8 @@
 
                 event.preventDefault();
             })
+            /* eslint-enable indent */
+
             /* Key down in tabs */
             .on("keydown", ".carrousel", function(event) {
 
@@ -395,7 +395,7 @@
                 }
                 // CTRL PageUp
                 if (event.keyCode == 33 && event.ctrlKey) {
-                    $tab_focused = $this.attr('aria-labelledby');
+                    var $tab_focused = $this.attr('aria-labelledby');
                     setTimeout(function() {
                         $("#" + $tab_focused).focus();
                     }, 0);
@@ -448,12 +448,12 @@
         // prev
         $body.on("click", ".js-carrousel__button__previous button", function(event) {
 
+                /* eslint-disable indent */
                 event.preventDefault();
 
                 var $this = $(this),
                     $activated,
-                    $parent = $this.parents(".carrousel"),
-                    $container = $parent.find(".carrousel__container");
+                    $parent = $this.parents(".carrousel");
 
                 // find previous tab
                 $activated = $parent.find('.js-carrousel__control__list__link[aria-selected="true"]').parent();
@@ -468,6 +468,8 @@
 
 
             })
+            /* eslint-enable indent */
+
             // next
             .on("click", ".js-carrousel__button__next button", function(event) {
 
@@ -475,8 +477,7 @@
 
                 var $this = $(this),
                     $activated,
-                    $parent = $this.parents(".carrousel"),
-                    $container = $parent.find(".carrousel__container");
+                    $parent = $this.parents(".carrousel");
 
                 // find next tab
                 $activated = $parent.find('.js-carrousel__control__list__link[aria-selected="true"]').parent();

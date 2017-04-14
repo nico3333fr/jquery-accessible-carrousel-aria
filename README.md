@@ -126,13 +126,12 @@ You may use <code>npm i jquery-accessible-carrousel-aria</code>. Or download it.
 - <code>data-carrousel-btn-next-img</code>: the address of the image used for “next” button.
 - <code>data-carrousel-btn-next-text</code>: the text of the “next” button, will be put in the <code>alt</code> attribute if there is an image, and in the <code>title</code> attribute for the button.
 - <code>data-carrousel-prefix-classes</code>: all the classes added for styling purpose will be prefixed, to simplify creating carrousel reusable styles.
-- <code>data-carrousel-span-text-class</code>: in the <code>ol</code> list, the text will be wrapped into a <code>span</code> with this class. Example, <code>data-carrousel-span-text-class="yipikai"</code>: 
-```<a … role="tab">
-  <span class="yipikai">A robust base</span>
-</a>```
+- <code>data-carrousel-span-text-class</code>: in the <code>ol</code> list, the text will be wrapped into a <code>span</code> with this class. Example, <code>data-carrousel-span-text-class="yipikai"</code>: ```<a … role="tab"><span class="yipikai">A robust base</span></a>```
 - <code>data-carrousel-transition</code>: the value of this attribute will be added as a class on <code>div class="carrousel__container"</code>. And <abbr title="Cascading Style Sheet">CSS</abbr> will do the magic to animate it, for this page, I’ve created three transitions: “slide”, “fade” and “none”.
 
-
+- <code>data-carrousel-active-slide</code>: the value of this attribute will activate the number of the specified slide, ex: ```data-carrousel-active-slide="3"```.
 
 
 Enjoy.
+
+<img src="https://www.nicolas-hoffmann.net/bordel/chuck-norris1.jpg" alt="Chuck Norris approved this" />

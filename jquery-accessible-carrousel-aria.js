@@ -12,7 +12,7 @@
 
         /*
          * jQuery Accessible Carrousel System, using ARIA
-         * @version v1.7.0         
+         * @version v1.7.1       
          * Website: https://a11y.nicolas-hoffmann.net/carrousel/
          * License MIT: https://github.com/nico3333fr/jquery-accessible-carrousel-aria/blob/master/LICENSE
          */
@@ -95,11 +95,11 @@
 
                     // add attributes
                     $this.attr({
-                        "role": "tabpanel",
-                        "id": $content_id,
-                        "aria-hidden": "true",
-                        "aria-labelledby": "label_" + $content_id
-                    })
+                            "role": "tabpanel",
+                            "id": $content_id,
+                            "aria-hidden": "true",
+                            "aria-labelledby": "label_" + $content_id
+                        })
                         .addClass('visibility-off')
                         .addClass($carrousel_prefix_classes + 'carrousel__content');
 
@@ -204,10 +204,56 @@
 
 
             }
+
+            //var $carrousels = $(".carrousel");
+            // active slide
+            $(".carrousel").each(function() {
+                var $this = $(this),
+                    $carrousel_container = $this.find('.carrousel__container'),
+                    options = $carrousel_container.data(),
+                    carrousel_active_slide = Number(options.carrouselActiveSlide) - 1 || 0,
+                    $control_list_links = $this.find('.js-carrousel__control__list__link');
+
+                // if there is an active slide, in a correct range and not already a valid hash for this carrousel
+                if (carrousel_active_slide !== 0 && carrousel_active_slide < $control_list_links.length && $this.find(".js-carrousel__control__list__link[aria-selected=true]").length === 0) {
+                    var $control_list_link = $control_list_links.eq(carrousel_active_slide),
+                        $content_linked = $('#' + $control_list_link.attr('aria-controls'));
+
+                    $control_list_links.eq(carrousel_active_slide).attr({
+                        "aria-selected": "true",
+                        "tabindex": 0
+                    });
+
+                    $content_linked.removeAttr("aria-hidden").removeClass('visibility-off');
+
+                    // get .carrouselslide-x-x
+                    var classes = $carrousel_container.attr('class').split(' ');
+                    var found = false;
+                    var previous_content;
+                    var new_content;
+                    var i = 0;
+                    while (found === false && i < classes.length) {
+                        if (classes[i].substr(0, 15) === "carrouselslide-") {
+                            previous_content = classes[i];
+                            found = true;
+                        }
+                        i++;
+                    }
+
+                    var tab = previous_content.split('-');
+                    new_content = tab[0] + '-' + tab[1] + '-' + (carrousel_active_slide + 1);
+                    // replace .carrouselslide-1-x by .carrouselslide-1-$index_tab
+                    $carrousel_container.removeClass(previous_content).addClass(new_content).trigger("NextSlide");
+
+                }
+
+            });
+
             // if no selected => select first
             $(".carrousel").each(function() {
                 var $this = $(this),
                     $first_content = $this.find(".carrousel__content:first");
+
                 if ($this.find(".js-carrousel__control__list__link[aria-selected=true]").length === 0) {
                     $this.find(".js-carrousel__control__list__link:first").attr({
                         "aria-selected": "true",

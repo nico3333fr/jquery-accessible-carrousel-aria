@@ -22,7 +22,7 @@
             $body = $('body');
 
 
-        if ($carrousel_container.length && $carrousel_content.length) { // if there are at least one content and one container :)
+        if ($carrousel_container.length && $carrousel_content.length > 1) { // if there are at least one content and one container :)
 
             var hash = window.location.hash.replace("#", ""),
                 getTransEndEventName = function() {

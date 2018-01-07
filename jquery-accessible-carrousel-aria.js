@@ -4,7 +4,7 @@
     } else if (typeof exports !== 'undefined') {
         module.exports = factory(require('jquery'));
     } else {
-        factory(jQuery);
+        factory(window.jQuery);
     }
 
 }(function($) {
@@ -12,7 +12,7 @@
 
         /*
          * jQuery Accessible Carrousel System, using ARIA
-         * @version v1.7.2       
+         * @version v1.7.3       
          * Website: https://a11y.nicolas-hoffmann.net/carrousel/
          * License MIT: https://github.com/nico3333fr/jquery-accessible-carrousel-aria/blob/master/LICENSE
          */
